@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+<p>input two numbers</p>
+<form action="/add/" method="get">
+	a:<input type="text" id="a" name="a"><br>
+	b:<input type="text" id="b" name="b"><br>
+	<p>result: <span id='result'></span></p>
+	<button type="button" id="sum">submit</button>
+</form>
+
+<div id="dict">Ajax dict</div>
+<p id="dict_result"></p>
+
+<div id="list">Ajax list</div>
+<p id="list_result"></p>
+
+<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.0.js"></script>
+
+<script>
+	$(document).ready(function(){
+		//sum a+b
+		$("#sum").click(function(){
+			var a = $("#a").val();
+			var b = $("#b").val();
+
+			$.get("/ajax2/add/", {'a':a, 'b':b},function(ret){
+				$('#result').html(ret);
+			})
+		});
+		//list
+		$('#list').click(function(){
+			$.getJSON('/ajax2/ajax_list/', function(ret){
+				//ret is a list
+				for (var i = ret.length - 1; i>=0;i--){
+					//ret show in html
+					$('#list_result').append(' '+ret[i])
+				};
+			})
+		})
+
+		//dict
+		$('#dict').click(function(){
+			$.getJSON('/ajax2/ajax_dict/',function(ret){
+				// ret is a dict
+				$('#dict_result').append(ret.saywhat + ' '+ret.school + '<br>');
+			})
+		})
+	});
+
+</script>
+</body>
+</html>
