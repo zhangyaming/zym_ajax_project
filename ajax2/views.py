@@ -4,7 +4,7 @@ import json
 # Create your views here.
 
 def index(request):
-        return render(request, 'index2.html')
+        return render(request, 'ajax2/index.html')
         
 def add(request):
 	a = request.GET['a']

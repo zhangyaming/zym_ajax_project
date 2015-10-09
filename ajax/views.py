@@ -3,7 +3,7 @@ from django.http import HttpResponse
 # Create your views here.
 
 def index(request):
-	return render(request, 'index.html')
+	return render(request, 'ajax/index.html')
 
 def add(request):
 	print request.GET['a']
